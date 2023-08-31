@@ -1,0 +1,58 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "version": "1.0.0",
+    "manifestVersion": "1.16",
+    "id": "${{TEAMS_APP_ID}}",
+    "packageName": "com.davrous.jarvib",
+    "name": {
+        "short": "JARVIB-${{TEAMSFX_ENV}}",
+        "full": "Just A Rather Very Intelligent Bot that can create dynamic 3D worlds."
+    },
+    "developer": {
+        "name": "David Rousset",
+        "mpnId": "",
+        "websiteUrl": "https://www.davrous.com",
+        "privacyUrl": "https://www.davrous.com/",
+        "termsOfUseUrl": "https://microsoft.com/termsofuse"
+    },
+    "description": {
+        "short": "A smart bot that can create dynamic 3D worlds.",
+        "full": "Just A Rather Very Intelligent Bot that can create dynamic 3D worlds."
+    },
+    "icons": {
+        "outline": "JARVIB_32.png",
+        "color": "JARVIB_192.png"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+        {
+            "botId": "${{BOT_ID}}",
+            "scopes": ["personal", "team", "groupChat"],
+            "isNotificationOnly": false,
+            "supportsCalling": false,
+            "supportsVideo": false,
+            "supportsFiles": false
+        }
+    ],
+    "configurableTabs": [
+        {
+            "configurationUrl": "${{TAB_ENDPOINT}}/?view=config&inTeams=1&load=1",
+            "canUpdateConfiguration": false,
+            "scopes": [
+                "groupchat"
+            ],
+            "context": [
+                "meetingSidePanel",
+                "meetingStage"
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "${{BOT_DOMAIN}}",
+        "${{TAB_DOMAIN}}"
+    ]
+}

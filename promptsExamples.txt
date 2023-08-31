@@ -1,0 +1,42 @@
+create 10 cubes of different colors and place them on a circle
+
+animate the rotation of the cube 5 and 9
+
+make the cube 3 transparent and move it up by 2 units
+
+find available models for a car
+
+load the purple one
+
+scale it to 80
+
+use the cube 4 position to move the purple car just on top of it
+
+load the C7 car
+
+scale it to 80
+
+attach it to the cube 5
+
+make the cube 5 totally transparent
+
+find models for a house
+
+load a scary one
+
+scale it to 10
+
+create a yellowish ground and move it down by 1 unit
+
+create an orange spot light
+
+animate its position like around a circle
+
+slow down the animation
+
+enable VR support
+
+animate the main scene active camera to circle around the haunted house
+
+slow down the animation by 10
+

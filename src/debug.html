@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>J.A.R.V.I.B Debug page</title>
+
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+        <script src="https://cdn.babylonjs.com/babylon.js"></script>
+        <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    </head>
+   <body>
+	<canvas id="renderCanvas"></canvas>
+    <script src="/socket.io/socket.io.js"></script>
+        <script>
+        var __EVAL = s => eval(`void (__EVAL = ${__EVAL.toString()}); ${s}`);
+
+        function evaluate(expr) {
+            try {
+                const result = __EVAL(expr);
+                console.log(expr, '===>', result)
+            } catch(err) {
+                console.log(expr, 'ERROR:', err.message)
+            }
+        }
+
+        var socket = io();
+        var scene;
+        var camera;
+        var light;
+
+            const canvas = document.getElementById("renderCanvas"); // Get the canvas element
+            var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+            const createScene = function () {
+                // Creates a basic Babylon Scene object
+                scene = new BABYLON.Scene(engine);
+
+                // Create a default skybox with an environment.
+                var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
+                var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
+
+                camera = new window.BABYLON.ArcRotateCamera(
+                    "camera",
+                    -Math.PI / 2,
+                    Math.PI / 2.5,
+                    15,
+                    new window.BABYLON.Vector3(0, 0, 0)
+                );
+                // Targets the camera to scene origin
+                camera.setTarget(BABYLON.Vector3.Zero());
+                // This attaches the camera to the canvas
+                camera.attachControl(canvas, true);
+                // Creates a light, aiming 0,1,0 - to the sky
+                light = new BABYLON.HemisphericLight("light", 
+                    new BABYLON.Vector3(0, 1, 0), scene);
+                // Dim the light a small amount - 0 to 1
+                light.intensity = 0.8;
+                socket.on('execute code', function(msg) {
+                console.log(msg);
+                evaluate(msg);
+            });
+
+                return scene;
+            };
+
+            var scene = createScene(); //Call the createScene function
+            // Register a render loop to repeatedly render the scene
+            engine.runRenderLoop(function () {
+                    scene.render();
+            });
+            // Watch for browser/canvas resize events
+            window.addEventListener("resize", function () {
+                    engine.resize();
+            });
+        </script>
+   </body>
+</html>

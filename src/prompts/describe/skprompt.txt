@@ -1,0 +1,7 @@
+Explain what the below Babylon.js code does. Try to be as visually descritive as possible to that a blind person car understand.
+
+```
+{{$conversation.fullCode}}
+```
+
+Explanation:

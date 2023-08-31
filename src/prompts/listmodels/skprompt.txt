@@ -1,0 +1,50 @@
+Here is an adaptive card template for showing a list of models with their name and associated image:
+
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.3",
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Available models",
+            "weight": "bolder",
+            "size": "large"
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "* Item X"
+                },
+                {
+                    "type": "Image",
+                    "url": "* Url Y",
+                    "width": "100px",
+                    "horizontalAlignment": "left"
+                }
+            ]
+        }
+    ]
+}
+
+Here's a list of model's names and associated images URL. This array contains a list items names:
+
+{{$list}}
+
+While this array lists the associated 1:1 mapping of the image URL:
+
+{{$imageList}}
+
+Here's the users query:
+
+```
+{{$input}}
+```
+
+Use the template to create an adaptive card and uses both arrays to populate the fields. You need to create a list with several items.
+Take into account any changes asked for by the user.
+Always replace the placeholder text, Item X, and Url Y with real data.
+
+AdaptiveCard:
